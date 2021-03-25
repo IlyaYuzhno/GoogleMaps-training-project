@@ -58,6 +58,7 @@ class MainViewController: UIViewController, GMSMapViewDelegate {
 
     private func addMarker(position: CLLocationCoordinate2D) {
         let marker = GMSMarker(position: position)
+        marker.icon = GMSMarker.markerImage(with: .purple)
         marker.map = mapView
         self.marker = marker
     }
