@@ -4,11 +4,9 @@
 //
 //  Created by Ilya Doroshkevitch on 25.03.2021.
 //
-
 import UIKit
 import GoogleMaps
 import CoreLocation
-import RealmSwift
 
 class MainViewController: UIViewController, GMSMapViewDelegate {
 
@@ -18,9 +16,8 @@ class MainViewController: UIViewController, GMSMapViewDelegate {
     var locationManager: CLLocationManager?
     var route: GMSPolyline?
     var routePath: GMSMutablePath?
-    let coordinates = CoordinatesToStore()
-    let realm = try! Realm()
     var isLocating: Bool?
+    let service = RealmService()
 
     lazy var showTrackButton: UIButton = {
         let button = UIButton()
@@ -40,7 +37,6 @@ class MainViewController: UIViewController, GMSMapViewDelegate {
         configureUI()
         configureMap()
         configureLocationManager()
-
     }
 
     // MARK: - Private
@@ -114,12 +110,6 @@ class MainViewController: UIViewController, GMSMapViewDelegate {
 
     }
 
-    fileprivate func storeToRealm(data: Any) {
-        try! realm.write {
-            realm.add(data as! Object)
-        }
-    }
-
     @objc private func lastTrackButtonPressed(sender: UIButton) {
 
         if isLocating == true {
@@ -136,9 +126,9 @@ class MainViewController: UIViewController, GMSMapViewDelegate {
 
     private func showLastTrack() {
         mapView.clear()
-        let lastTrack = realm.objects(CoordinatesToStore.self)
+        let lastTrack = service.lastTrack().last
 
-        guard let path = GMSPath(fromEncodedPath: lastTrack.last?.toStore ?? "") else { return }
+        guard let path = GMSPath(fromEncodedPath: lastTrack?.toStore ?? "") else { return }
         let route = GMSPolyline(path: path)
         route.strokeColor = .red
         route.strokeWidth = 10
@@ -148,17 +138,15 @@ class MainViewController: UIViewController, GMSMapViewDelegate {
         let update = GMSCameraUpdate.fit(bounds, withPadding: 50.0)
         mapView.moveCamera(update)
 
-
     }
 
-    fileprivate func stopTrackingAndSavePath() {
+    private func stopTrackingAndSavePath() {
         isLocating = false
         locationManager?.stopUpdatingLocation()
-        try! realm.write {
-            coordinates.toStore = routePath?.encodedPath() ?? ""
-        }
-        storeToRealm(data: coordinates)
+        service.savePath(coordinates: routePath?.encodedPath() ?? "")
     }
+
+
 
 }
 
