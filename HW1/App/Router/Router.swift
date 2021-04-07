@@ -13,7 +13,7 @@ class Router {
 
     func goTo(from: UIViewController, to: UIViewController) {
         let toViewController = to
-        from.navigationController?.show(toViewController, sender: self)
+        from.navigationController?.pushViewController(toViewController, animated: true)
     }
 
 
