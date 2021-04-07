@@ -56,6 +56,7 @@ class LoginView: UIView {
          textField.translatesAutoresizingMaskIntoConstraints = false
          textField.backgroundColor = .white
          textField.layer.cornerRadius = 6
+         textField.autocorrectionType = .no
          return textField
      }()
 
@@ -74,6 +75,8 @@ class LoginView: UIView {
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.backgroundColor = .white
         textField.layer.cornerRadius = 6
+        textField.autocorrectionType = .no
+        textField.isSecureTextEntry = true
         return textField
     }()
 

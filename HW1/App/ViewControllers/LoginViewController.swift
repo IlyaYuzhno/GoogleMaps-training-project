@@ -22,6 +22,13 @@ class LoginViewController: UIViewController {
         loginView.delegate = self
         service.delegate = self
         view.addSubview(loginView)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(setBlur), name: Notification.Name("sceneWillResignActive"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(removeBlur), name: Notification.Name("sceneDidBecomeActive"), object: nil)
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }
 
@@ -83,3 +90,16 @@ extension LoginViewController {
         present(alert, animated: true, completion: nil)
     }
 }
+
+extension LoginViewController {
+
+    @objc private func setBlur() {
+        Blur.setBlur(view: self.view)
+    }
+
+    @objc private func removeBlur() {
+        Blur.removeBlur()
+    }
+
+}
+
