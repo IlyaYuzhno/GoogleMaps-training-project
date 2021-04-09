@@ -11,6 +11,11 @@
 		5B060FEC261702EF0090E250 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 5B060FEB261702EF0090E250 /* Realm */; };
 		5B060FEE261702EF0090E250 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5B060FED261702EF0090E250 /* RealmSwift */; };
 		5B060FF426170C310090E250 /* CoordinatesToStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B060FF326170C310090E250 /* CoordinatesToStore.swift */; };
+		5B060FFF261AE60D0090E250 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B060FFE261AE60D0090E250 /* User.swift */; };
+		5B061004261AE6B10090E250 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B061003261AE6B10090E250 /* LoginViewController.swift */; };
+		5B061009261AE6CC0090E250 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B061008261AE6CC0090E250 /* LoginView.swift */; };
+		5B06100F261AF3FD0090E250 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B06100E261AF3FD0090E250 /* RealmService.swift */; };
+		5B061018261B13890090E250 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B061017261B13890090E250 /* Router.swift */; };
 		5BDA12CC260C62B400FB2DDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDA12CB260C62B400FB2DDD /* AppDelegate.swift */; };
 		5BDA12CE260C62B400FB2DDD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDA12CD260C62B400FB2DDD /* SceneDelegate.swift */; };
 		5BDA12D0260C62B400FB2DDD /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDA12CF260C62B400FB2DDD /* MainViewController.swift */; };
@@ -45,6 +50,11 @@
 		4C3B2146CFFE4B9897127B36 /* Pods_HW1Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HW1Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		51492822B5CD9597641B9127 /* Pods-HW1-HW1UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HW1-HW1UITests.debug.xcconfig"; path = "Target Support Files/Pods-HW1-HW1UITests/Pods-HW1-HW1UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		5B060FF326170C310090E250 /* CoordinatesToStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatesToStore.swift; sourceTree = "<group>"; };
+		5B060FFE261AE60D0090E250 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		5B061003261AE6B10090E250 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		5B061008261AE6CC0090E250 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		5B06100E261AF3FD0090E250 /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
+		5B061017261B13890090E250 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		5BDA12C8260C62B400FB2DDD /* HW1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HW1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BDA12CB260C62B400FB2DDD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5BDA12CD260C62B400FB2DDD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -101,8 +111,25 @@
 			isa = PBXGroup;
 			children = (
 				5B060FF326170C310090E250 /* CoordinatesToStore.swift */,
+				5B060FFE261AE60D0090E250 /* User.swift */,
 			);
 			path = Entity;
+			sourceTree = "<group>";
+		};
+		5B06100D261AF3E80090E250 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				5B06100E261AF3FD0090E250 /* RealmService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		5B061016261B13750090E250 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				5B061017261B13890090E250 /* Router.swift */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 		5BDA12BF260C62B400FB2DDD = {
@@ -169,6 +196,8 @@
 			children = (
 				5BDA12CF260C62B400FB2DDD /* MainViewController.swift */,
 				5BDA130F260C693B00FB2DDD /* MapView.swift */,
+				5B061003261AE6B10090E250 /* LoginViewController.swift */,
+				5B061008261AE6CC0090E250 /* LoginView.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -176,6 +205,8 @@
 		5BDA1303260C630900FB2DDD /* App */ = {
 			isa = PBXGroup;
 			children = (
+				5B061016261B13750090E250 /* Router */,
+				5B06100D261AF3E80090E250 /* Services */,
 				5B060FF226170C1C0090E250 /* Entity */,
 				5BDA12CD260C62B400FB2DDD /* SceneDelegate.swift */,
 				5BDA12CB260C62B400FB2DDD /* AppDelegate.swift */,
@@ -451,10 +482,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B061004261AE6B10090E250 /* LoginViewController.swift in Sources */,
 				5BDA12D0260C62B400FB2DDD /* MainViewController.swift in Sources */,
+				5B061018261B13890090E250 /* Router.swift in Sources */,
 				5BDA1310260C693B00FB2DDD /* MapView.swift in Sources */,
+				5B060FFF261AE60D0090E250 /* User.swift in Sources */,
+				5B06100F261AF3FD0090E250 /* RealmService.swift in Sources */,
 				5BDA12CC260C62B400FB2DDD /* AppDelegate.swift in Sources */,
 				5B060FF426170C310090E250 /* CoordinatesToStore.swift in Sources */,
+				5B061009261AE6CC0090E250 /* LoginView.swift in Sources */,
 				5BDA12CE260C62B400FB2DDD /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
