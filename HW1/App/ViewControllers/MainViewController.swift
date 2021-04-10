@@ -13,11 +13,11 @@ class MainViewController: UIViewController, GMSMapViewDelegate {
     let mapView = MapView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 200))
     let defaultCoordinate = CLLocationCoordinate2D(latitude: 55.753215, longitude: 37.622504)
     var marker: GMSMarker?
-    var locationManager: CLLocationManager?
     var route: GMSPolyline?
     var routePath: GMSMutablePath?
     var isLocating: Bool?
     let service = RealmService()
+    let locationManager = LocationManager.instance
 
     lazy var showTrackButton: UIButton = {
         let button = UIButton()
@@ -71,14 +71,20 @@ class MainViewController: UIViewController, GMSMapViewDelegate {
     }
 
     private func configureLocationManager() {
-        locationManager = CLLocationManager()
-        locationManager?.delegate = self
-        locationManager?.allowsBackgroundLocationUpdates = true
-        locationManager?.pausesLocationUpdatesAutomatically = false
-        locationManager?.startMonitoringSignificantLocationChanges()
-        locationManager?.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-        locationManager?.requestAlwaysAuthorization()
+        locationManager
+            .location
+            .asObservable()
+            .bind { [weak self] location in
+                //guard let location = location else { return }
+                self?.routePath?.add(location.coordinate)
+                // Обновляем путь у линии маршрута путём повторного присвоения
+                self?.route?.path = self?.routePath
 
+                // Чтобы наблюдать за движением, установим камеру на только что добавленную
+                // точку
+                let position = GMSCameraPosition.camera(withTarget: location.coordinate, zoom: 17)
+                self?.mapView.animate(to: position)
+            }
     }
 
     private func addMarker(position: CLLocationCoordinate2D) {
@@ -109,12 +115,11 @@ class MainViewController: UIViewController, GMSMapViewDelegate {
         // Добавляем новую линию на карту
         route?.map = mapView
         // Запускаем отслеживание или продолжаем, если оно уже запущено
-        locationManager?.startUpdatingLocation()
+        locationManager.startUpdatingLocation()
 
     }
 
     @objc private func lastTrackButtonPressed(sender: UIButton) {
-
         if isLocating == true {
             let alert = UIAlertController(title: "Внимание", message: "В данный момент происходит слежение!!!", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Остановить слежение", style: .destructive, handler: { [weak self] action in
@@ -145,7 +150,7 @@ class MainViewController: UIViewController, GMSMapViewDelegate {
 
     private func stopTrackingAndSavePath() {
         isLocating = false
-        locationManager?.stopUpdatingLocation()
+        locationManager.stopUpdatingLocation()
         service.savePath(coordinates: routePath?.encodedPath() ?? "")
     }
 

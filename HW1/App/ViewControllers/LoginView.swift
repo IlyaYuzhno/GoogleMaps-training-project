@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 protocol LoginViewDelegate: class {
     func loginButtonPressed(sender: UIButton)
@@ -20,6 +22,7 @@ class LoginView: UIView {
 
          setupViews()
          setupConstraints()
+         configureLoginBindings()
      }
 
      required init?(coder: NSCoder) {
@@ -165,6 +168,38 @@ class LoginView: UIView {
 
 }
 
+// MARK: - RxSwift methods extension
+extension LoginView {
+    func configureLoginBindings() {
+            Observable
+    // Объединяем два обсервера в один
+                .combineLatest(
+    // Обсервер изменения текста
+                    usernameTextField.rx.text,
+    // Обсервер изменения текста
+                    passwordTextField.rx.text
+                )
+    // Модифицируем значения из двух обсерверов в один
+                .map { login, password in
+    // Если введены логин и пароль больше 6 символов, будет возвращено “истина”
+                    return !(login ?? "").isEmpty && (password ?? "").count >= 6
+                }
+    // Подписываемся на получение событий
+                .bind { [weak loginButton] inputFilled in
+    // Если событие означает успех, активируем кнопку, иначе деактивируем
+                    switch inputFilled {
+                    case true:
+                        loginButton?.isEnabled = inputFilled
+                        loginButton?.backgroundColor = .green
+                    case false:
+                        loginButton?.isEnabled = inputFilled
+                        loginButton?.backgroundColor = .lightGray
+                    }
+            }
+        }
+
+
+}
 
 public extension UIView {
     func addSubviews(_ views: UIView...) {
