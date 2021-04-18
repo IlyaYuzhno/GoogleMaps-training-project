@@ -18,6 +18,7 @@
 		5B061018261B13890090E250 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B061017261B13890090E250 /* Router.swift */; };
 		5B061024261D9A170090E250 /* Blur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B061023261D9A170090E250 /* Blur.swift */; };
 		5B0610652620DDA90090E250 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0610642620DDA90090E250 /* LocationManager.swift */; };
+		5B2C04DA262C2C6F00FB1CED /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2C04D9262C2C6F00FB1CED /* Notifications.swift */; };
 		5BDA12CC260C62B400FB2DDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDA12CB260C62B400FB2DDD /* AppDelegate.swift */; };
 		5BDA12CE260C62B400FB2DDD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDA12CD260C62B400FB2DDD /* SceneDelegate.swift */; };
 		5BDA12D0260C62B400FB2DDD /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDA12CF260C62B400FB2DDD /* MainViewController.swift */; };
@@ -59,6 +60,7 @@
 		5B061017261B13890090E250 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		5B061023261D9A170090E250 /* Blur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blur.swift; sourceTree = "<group>"; };
 		5B0610642620DDA90090E250 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		5B2C04D9262C2C6F00FB1CED /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		5BDA12C8260C62B400FB2DDD /* HW1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HW1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BDA12CB260C62B400FB2DDD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5BDA12CD260C62B400FB2DDD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 			children = (
 				5B06100E261AF3FD0090E250 /* RealmService.swift */,
 				5B0610642620DDA90090E250 /* LocationManager.swift */,
+				5B2C04D9262C2C6F00FB1CED /* Notifications.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -537,6 +540,7 @@
 				5BDA12D0260C62B400FB2DDD /* MainViewController.swift in Sources */,
 				5B061018261B13890090E250 /* Router.swift in Sources */,
 				5BDA1310260C693B00FB2DDD /* MapView.swift in Sources */,
+				5B2C04DA262C2C6F00FB1CED /* Notifications.swift in Sources */,
 				5B060FFF261AE60D0090E250 /* User.swift in Sources */,
 				5B06100F261AF3FD0090E250 /* RealmService.swift in Sources */,
 				5BDA12CC260C62B400FB2DDD /* AppDelegate.swift in Sources */,
