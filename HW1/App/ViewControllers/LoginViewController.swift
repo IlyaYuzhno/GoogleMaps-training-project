@@ -32,7 +32,6 @@ class LoginViewController: UIViewController {
     }
 }
 
-
 // MARK: - Extensions
 extension LoginViewController: LoginViewDelegate {
      func loginButtonPressed(sender: UIButton) {
@@ -53,7 +52,6 @@ extension LoginViewController: LoginViewDelegate {
          service.registerUser(login: login, password: password)
      }
 }
-
 
 extension LoginViewController: RealmServiceDelegate {
     func registerSuccess() {
@@ -76,9 +74,7 @@ extension LoginViewController: RealmServiceDelegate {
     func goToMainViewController() {
         router.goTo(from: self, to: MainViewController())
     }
-
 }
-
 
 extension LoginViewController {
 
