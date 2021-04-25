@@ -7,16 +7,41 @@
 
 import UIKit
 import GoogleMaps
-
+import UserNotifications
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         GMSServices.provideAPIKey("AIzaSyD2bAeRE01dCmtLWANxMNQHDC_k2p_v_mw")
+        
+      // Get notifications authorization
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+            guard granted else {
+                print("Разрешение не получено")
+                return
+            }
+        }
+
+        center.getNotificationSettings { settings in
+            switch settings.authorizationStatus {
+            case .authorized:
+                print("Разрешение есть")
+            case .denied:
+                print("Разрешения нет")
+            case .notDetermined:
+                print("Неясно, есть или нет разрешение")
+            case .provisional:
+                break
+            case .ephemeral:
+                break
+            @unknown default:
+                break
+            }
+        }
+
 
         return true
     }
@@ -34,7 +59,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
-
-
 }
 
