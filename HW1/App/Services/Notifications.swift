@@ -3,7 +3,6 @@
 //  HW1
 //
 //  Created by Ilya Doroshkevitch on 18.04.2021.
-//
 
 import Foundation
 import UserNotifications

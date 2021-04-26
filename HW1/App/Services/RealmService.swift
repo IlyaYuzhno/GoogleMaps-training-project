@@ -70,7 +70,6 @@ class RealmService {
             realm.add(self.coordinates)
         }
     }
-
  }
 
 
